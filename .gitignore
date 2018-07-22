@@ -25,4 +25,5 @@ $RECYCLE.BIN/
 
 # Intellij files and folders
 .idea/
+*/target/*
 *.iml
