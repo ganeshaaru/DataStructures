@@ -1,5 +1,7 @@
 package com.r.basics.tree;
 
+import com.r.basics.common.BinaryNode;
+
 public interface Tree<T extends Comparable<T>>
 {
     void traversal();
@@ -11,4 +13,6 @@ public interface Tree<T extends Comparable<T>>
     T getMax();
 
     T getMin();
+
+    BinaryNode<T> getRoot();
 }

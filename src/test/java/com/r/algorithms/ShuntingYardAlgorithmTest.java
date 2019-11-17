@@ -21,4 +21,22 @@ public class ShuntingYardAlgorithmTest {
 
         assertEquals(Integer.valueOf(13), value);
     }
+
+    @Test
+    public void testShouldConvertInfixToPostfixEx2() {
+        String infixExprression = "1 * 5 - 3";
+
+        Integer value = shuntingYardAlgorithmSUT.evaluateExpression(infixExprression);
+
+        assertEquals(Integer.valueOf(2), value);
+    }
+
+    @Test
+    public void testShouldConvertInfixToPostfixEx3() {
+        String infixExprression = "3 * 5 / 3";
+
+        Integer value = shuntingYardAlgorithmSUT.evaluateExpression(infixExprression);
+
+        assertEquals(Integer.valueOf(5), value);
+    }
 }
