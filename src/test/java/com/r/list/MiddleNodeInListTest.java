@@ -25,7 +25,7 @@ public class MiddleNodeInListTest {
     public void testShouldReturnMiddleOfTheOddSizeList() {
         middleNodeInList =  new MiddleNodeInList<String>();
 
-        String middle = middleNodeInList.MiddleOfTheList(list.getRoot());
+        String middle = (String) middleNodeInList.MiddleOfTheList(list.getRoot());
     }
 
 }

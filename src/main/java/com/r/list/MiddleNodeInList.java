@@ -1,6 +1,6 @@
 package com.r.list;
 
-import com.r.basics.linkedlist.Node;
+import com.r.basics.common.Node;
 
 public class MiddleNodeInList<T extends Comparable<T>> {
 

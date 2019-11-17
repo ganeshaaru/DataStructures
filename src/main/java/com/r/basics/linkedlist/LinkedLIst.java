@@ -1,5 +1,7 @@
 package com.r.basics.linkedlist;
 
+import com.r.basics.common.Node;
+
 public class LinkedLIst<T extends Comparable<T>> implements List<T> {
 
     private Node<T> root;
