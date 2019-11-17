@@ -52,6 +52,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>
 
     }
 
+
     private void insertAtNode(T item, BinaryNode<T> node)
     {
         if (isGivenItemLessThanTheNode(item, node) >= 0)
@@ -197,5 +198,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T>
             return minNode.getItem();
         }
         return null;
+    }
+
+    @Override
+    public BinaryNode<T> getRoot()
+    {
+        return this.rootNode;
     }
 }

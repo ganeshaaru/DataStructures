@@ -51,7 +51,7 @@ public class ShuntingYardAlgorithm
     public static Integer evaluateExpression(String infix)
     {
         Stack<String> operatorStack = new Stack<>();
-        Stack<Integer> outputStack = new Stack<>();
+        Stack<BigDecimal> outputStack = new Stack<>();
 
         for (String currentToken : infix.split("\\s"))
         {
@@ -64,8 +64,8 @@ public class ShuntingYardAlgorithm
                 while (!operatorStack.isEmpty() && isHighPrecedence(currentToken, operatorStack.peek()))
                 {
                     String higherPrecedenceOperator = operatorStack.pop();
-                    Integer operandLeft = outputStack.pop();
-                    Integer operandRight = outputStack.pop();
+                    BigDecimal operandLeft = outputStack.pop();
+                    BigDecimal operandRight = outputStack.pop();
                     outputStack.push(evaluate(operandLeft, operandRight, higherPrecedenceOperator));
 
                 }
@@ -75,14 +75,14 @@ public class ShuntingYardAlgorithm
                 while (!"(".equalsIgnoreCase(operatorStack.peek()))
                 {
                     String higherPrecedenceOperator = operatorStack.pop();
-                    Integer operandLeft = outputStack.pop();
-                    Integer operandRight = outputStack.pop();
+                    BigDecimal operandLeft = outputStack.pop();
+                    BigDecimal operandRight = outputStack.pop();
                     outputStack.push(evaluate(operandLeft, operandRight, higherPrecedenceOperator));
                 }
                 operatorStack.pop();
             } else
             {
-                outputStack.push(Integer.valueOf(currentToken));
+                outputStack.push(new BigDecimal(currentToken));
             }
         }
 
@@ -90,19 +90,18 @@ public class ShuntingYardAlgorithm
         while (!operatorStack.empty())
         {
             String higherPrecedenceOperator = operatorStack.pop();
-            Integer operandLeft = outputStack.pop();
-            Integer operandRight = outputStack.pop();
+            BigDecimal operandRight = outputStack.pop();
+            BigDecimal operandLeft = outputStack.pop();
+
             outputStack.push(evaluate(operandLeft, operandRight, higherPrecedenceOperator));
 
         }
-        return outputStack.pop();
+        return outputStack.pop().intValue();
     }
 
-    private static Integer evaluate(Integer operandLeft, Integer operandRight, String operator)
+    private static BigDecimal evaluate(BigDecimal left, BigDecimal right, String operator)
     {
         BigDecimal retVal = BigDecimal.ZERO;
-        BigDecimal left = BigDecimal.valueOf(operandLeft);
-        BigDecimal right = BigDecimal.valueOf(operandRight);
         if (operator.equals(Operator.MULTIPLY.sign))
         {
             retVal = left.multiply(right);
@@ -114,9 +113,9 @@ public class ShuntingYardAlgorithm
             retVal = left.subtract(right);
         } else if (operator.equals(Operator.DIVIDE.sign))
         {
-            retVal = left.divide(right);
+            retVal = left.divide(right, 4, BigDecimal.ROUND_HALF_EVEN);
         }
-        return retVal.intValue();
+        return retVal;
     }
 
 
