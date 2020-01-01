@@ -19,6 +19,8 @@ public class BinarySearchTreeTest {
         binarySearchTreeSUT.insert(8);
         binarySearchTreeSUT.insert(2);
         binarySearchTreeSUT.insert(3);
+
+        TreePrinter.printNode(binarySearchTreeSUT.getRoot());
     }
 
     @Test
